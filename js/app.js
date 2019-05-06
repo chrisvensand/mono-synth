@@ -1,1 +1,0 @@
-var keyboard = new Keyboard("midi-keyboard");
