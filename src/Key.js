@@ -1,34 +1,43 @@
 import React from 'react';
+import Tone from 'tone';
 
 class Key extends React.Component {
     constructor(props) {
         super(props);
         this.letter = this.props.letter;
-        this.state = {
-            isPressed: false,
-        };
-        this.handlePress = this.handlePress.bind(this);
+        this.synth = new Tone.Synth().toMaster();
     }
 
-    handlePress() {
-        if (!this.state.isPressed) {
-            // Create oscillator and start sound
-            console.log(this.letter + ' key start sound.')
-        } else {
-            // Stop oscillator sound
-            console.log(this.letter + ' key stop sound')
+    handleButtonPress = event => {
+        if (event.key === 'Enter') {
+            console.log(event.Key + ' Key pressed')    
+            this.handlePlaySynth();
         }
+    };
 
-        this.setState(state => ({
-            isPressed: !state.isPressed
-        }));
+    handlePlaySynth = () => {
+        this.synth.triggerAttack('C4');
+        console.log(this.letter + ' key start sound.');
+    }
+
+    stop(e) {
+        console.log(e + ' Key pressed')
+        this.synth.triggerRelease();
+        console.log(this.letter + ' key stop sound');
     }
 
     render() {
         return (
-            <button className="key" id={this.letter} onClick={this.handlePress} type="button">
-                {this.letter}
-            </button>
+            <div>
+                <input type="name" onKeyPress={this.handlePlaySynth} />
+                <button className="Key"
+                        type="button" 
+                        id={this.letter}
+                        onClick={(e) => this.play(e)}
+                        onKeyPress={(e) => this.stop(e)}>
+                    {this.letter}
+                </button>
+            </div>
         );
     }
 }
