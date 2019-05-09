@@ -1,4 +1,25 @@
-* , .application-html > body {
-    font-family: proxima-nova, sans-serif;
+.Keyboard {
+    height: 33em;
+    width: 53em;
+    margin: auto;
+    padding: 2em;
+    background-color: black;
 }
 
+.TopKeys {
+    margin: auto;
+    background-color: blue
+}
+
+.BottomKeys {
+    margin: auto;
+    background-color: greenyellow;
+}
+
+.Key {
+    background-color: aqua;
+    width: 2em;
+    height: 3.23em;
+    font: 2em courier;
+    margin: 0.1em
+}
