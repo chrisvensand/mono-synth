@@ -1,25 +1,49 @@
-.Keyboard {
+.screen-mask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.keyboard {
     height: 33em;
     width: 53em;
+    position: relative;
     margin: auto;
-    padding: 2em;
+    background-image: url(assets/light_wood_panel.jpg);
+}
+
+.top-keys {
+    position: absolute;
+    width: 90%;
+    bottom: 20.5%;
+    left: 5%;
+    text-align: center;
     background-color: black;
 }
 
-.TopKeys {
-    margin: auto;
-    background-color: blue
+.bottom-keys {
+    position: absolute;
+    width: 90%;
+    bottom: 0%;
+    left: 5%;
+    text-align: center;
+    background-color: black;
 }
 
-.BottomKeys {
-    margin: auto;
-    background-color: greenyellow;
-}
-
-.Key {
-    background-color: aqua;
-    width: 2em;
-    height: 3.23em;
+.key {
+    background-color: white;
+    width: 9.70%;
+    height: 3.3em;
     font: 2em courier;
-    margin: 0.1em
+    margin: 0.03em;
+}
+
+.synthesizer-application {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
 }
