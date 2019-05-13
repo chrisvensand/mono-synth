@@ -1,48 +1,42 @@
 import React from 'react';
 import Tone from 'tone';
 
-class Key extends React.Component {
+export default class Key extends React.Component {
     constructor(props) {
         super(props);
-        this.letter = this.props.letter;
-        this.synth = new Tone.Synth().toMaster();
         this.state = {
-            isPressed: false
+            synth: new Tone.Synth().toMaster(),
         }
     }
 
-    handleClick = () => {
-        if (this.state.isPressed) {
-            console.log("off");
-        } else {
-            console.log("on");
+    componentDidUpdate(prevProps) {
+        if (this.props.isPressed !== prevProps.isPressed) {
+            if (this.props.isPressed) {
+                this.state.synth.triggerAttack('C4');
+            } else {
+                this.state.synth.triggerRelease();
+            }
         }
-
-        this.setState = (state => ({
-            isPressed: !state.isPressed
-        }));
-
-        //this.synth.triggerAttack('C4');
-        //console.log(this.letter + ' key start sound.');
     }
 
-    stop(e) {
-        console.log(e + ' Key pressed')
-        this.synth.triggerRelease();
-        console.log(this.letter + ' key stop sound');
+    handleKeyPress = () => {
+        console.log("on");
+        this.state.synth.triggerAttack('C4');
+        this.changePressedState();
+    }
+
+    handleKeyRelease= () => {
+        console.log("off");
+        this.state.synth.triggerRelease();
+        this.changePressedState();
     }
 
     render() {
         return (
-            <button className="Key"
-                    type="button" 
-                    id={this.letter}
-                    onMouseDown={this.handleClick}
-                    onMouseUp={this.handleClick}>
-                {this.letter}
+            <button className="key"
+                    id={this.props.letter}>
+                {this.props.letter}
             </button>
         );
     }
 }
-
-export default Key;
