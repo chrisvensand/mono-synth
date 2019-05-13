@@ -19,22 +19,17 @@ export default class Key extends React.Component {
         }
     }
 
-    handleKeyPress = () => {
-        console.log("on");
-        this.state.synth.triggerAttack('C4');
-        this.changePressedState();
-    }
-
-    handleKeyRelease= () => {
-        console.log("off");
-        this.state.synth.triggerRelease();
-        this.changePressedState();
-    }
-
     render() {
+        var name = "key";
+        if (this.props.isPressed) {
+            name = "pressedKey";
+        }
+
         return (
-            <button className="key"
-                    id={this.props.letter}>
+            <button className={name}
+                    id={this.props.letter}
+                    onMouseDown={this.props.handleMouseDown}
+                    onMouseUp={this.props.handleMouseUp}>
                 {this.props.letter}
             </button>
         );

@@ -29,27 +29,39 @@ export default class Keyboard extends React.Component {
                 'P': false,
             },
         };
-        this.switchKey = this.switchKey.bind(this);
+        this.changeState = this.changeState.bind(this);
+        this.handlePress = this.handlePress.bind(this);
+        this.handleRelease = this.handleRelease.bind(this);
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        this.handleMouseUp = this.handleMouseUp.bind(this);
     }
 
-    switchKey(event, pressed) {
-        // handle convert all input to upper case
-        let key = event.key.toUpperCase();
+    handlePress = (event) => {
+        this.changeState(event.key, true);
+    }
 
-        // update isPressed state
+    handleRelease = (event) => {
+        this.changeState(event.key, false);
+    }
+
+    handleMouseDown = (event) => {
+        this.changeState(event.currentTarget.id, true);
+    }
+
+    handleMouseUp = (event) => {
+        this.changeState(event.currentTarget.id, false);
+    }
+
+    changeState(k, pressed) {
+        // convert all input to upper case
+        let key = k.toUpperCase();
+
+        // update state of pressed keys
         if (key in this.state.isPressed && this.state.isPressed[key] !== pressed) {
             let copy = this.state.isPressed;
             copy[key] = !copy[key];
             this.setState({isPressed: copy});
         }
-    }
-
-    handlePress = (event) => {
-        this.switchKey(event, true);
-    }
-
-    handleRelease = (event) => {
-        this.switchKey(event, false);
     }
 
     render() {
@@ -59,15 +71,22 @@ export default class Keyboard extends React.Component {
         return (
             <div className="screen-mask" onKeyDown={this.handlePress} onKeyUp={this.handleRelease} tabIndex="0">
                 <div className="keyboard">
-                    <label>hello</label>
                     <div className="top-keys">
                         { topKeys.map((value, index) => {
-                            return <Key key={index} letter={value} isPressed={this.state.isPressed[value]} /> 
+                            return <Key key={index}
+                                        letter={value}
+                                        isPressed={this.state.isPressed[value]}
+                                        handleMouseDown={this.handleMouseDown}
+                                        handleMouseUp={this.handleMouseUp} /> 
                         })}
                     </div>
                     <div className="bottom-keys">
                         { bottomKeys.map((value, index) => {
-                            return <Key key={index} letter={value} isPressed={this.state.isPressed[value]} /> 
+                            return <Key key={index}
+                                        letter={value}
+                                        isPressed={this.state.isPressed[value]}
+                                        handleMouseDown={this.handleMouseDown}
+                                        handleMouseUp={this.handleMouseUp} /> 
                         })}
                     </div>
                 </div>
