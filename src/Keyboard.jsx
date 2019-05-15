@@ -6,6 +6,8 @@ export default class Keyboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            settings: this.props.preset,
+            pitch: this.props.pitch,
             isPressed: {
                 'A': false,
                 'S': false,
@@ -28,31 +30,48 @@ export default class Keyboard extends React.Component {
                 'O': false,
                 'P': false,
             },
+            frequency: {
+                'A': 261.6256,
+                'S': 293.6648,
+                'D': 329.6276,
+                'F': 349.2282,
+                'G': 391.9954,
+                'H': 440.0000,
+                'J': 493.8833,
+                'K': 523.2511,
+                'L': 587.3295,
+                ';': 659.2551,
+                'Q': 277.1826,
+                'W': 311.1270,
+                'E': 339.2863,
+                'R': 369.9944,
+                'T': 415.3047,
+                'Y': 466.1638,
+                'U': 508.3551,
+                'I': 554.3653,
+                'O': 622.2540,
+                'P': 678.5727,
+            },
         };
-        this.changeState = this.changeState.bind(this);
-        this.handlePress = this.handlePress.bind(this);
-        this.handleRelease = this.handleRelease.bind(this);
-        this.handleMouseDown = this.handleMouseDown.bind(this);
-        this.handleMouseUp = this.handleMouseUp.bind(this);
     }
 
-    handlePress = (event) => {
-        this.changeState(event.key, true);
+    handleKeyDownEvent = (event) => {
+        this.pressKey(event.key, true);
     }
 
-    handleRelease = (event) => {
-        this.changeState(event.key, false);
+    handleKeyUpEvent = (event) => {
+        this.pressKey(event.key, false);
     }
 
     handleMouseDown = (event) => {
-        this.changeState(event.currentTarget.id, true);
+        this.pressKey(event.currentTarget.id, true);
     }
 
     handleMouseUp = (event) => {
-        this.changeState(event.currentTarget.id, false);
+        this.pressKey(event.currentTarget.id, false);
     }
 
-    changeState(k, pressed) {
+    pressKey = (k, pressed) => {
         // convert all input to upper case
         let key = k.toUpperCase();
 
@@ -64,33 +83,50 @@ export default class Keyboard extends React.Component {
         }
     }
 
+    handleChangePitch = (event) => {
+        console.log(event);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.preset !== prevProps.preset) {
+            this.setState({settings: prevProps.preset});
+        }
+        if (this.props.pitch !== prevProps.pitch) {
+            console.log(this.props.pitch);
+        }
+    }
+
     render() {
         const topKeys = ['Q','W','E','R','T','Y','U','I','O','P'];
         const bottomKeys = ['A','S','D','F','G','H','J','K','L',';'];
 
         return (
-            <div className="screen-mask" onKeyDown={this.handlePress} onKeyUp={this.handleRelease} tabIndex="0">
+            <div className="input-box" onKeyDown={this.handleKeyDownEvent} onKeyUp={this.handleKeyUpEvent} tabIndex="0">
                 <div className="keyboard">
-                    <div className="top-keys">
+                    <div className="top-key-box">
                         { topKeys.map((value, index) => {
                             return <Key key={index}
                                         letter={value}
+                                        settings={this.state.settings}
                                         isPressed={this.state.isPressed[value]}
+                                        frequency={this.state.frequency[value]}
                                         handleMouseDown={this.handleMouseDown}
                                         handleMouseUp={this.handleMouseUp} /> 
                         })}
                     </div>
-                    <div className="bottom-keys">
+                    <div className="bottom-key-box">
                         { bottomKeys.map((value, index) => {
                             return <Key key={index}
                                         letter={value}
+                                        settings={this.state.settings}
                                         isPressed={this.state.isPressed[value]}
+                                        frequency={this.state.frequency[value]}
                                         handleMouseDown={this.handleMouseDown}
                                         handleMouseUp={this.handleMouseUp} /> 
                         })}
                     </div>
                 </div>
-            </div> 
+            </div>
         );
     }
 }
