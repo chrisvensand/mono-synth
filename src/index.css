@@ -1,61 +1,165 @@
 .main-view {
     position: fixed;
-    height: 100%;
-    width: 100%;
     top: 0px;
     left: 0px;
+    height: 100%;
+    width: 100%;
 }
 
 .synthesizer {
-    height: 33em;
-    width: 53em;
-    position: relative;
-    margin: auto;
-    background-image: url(assets/light_wood_panel.jpg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 40em;
+    width: 65em;
 }
 
-.screen-mask {
-    position: fixed;
+.wood-background {
+    object-fit: fill;
+    height: 40em;
+    width: 65em;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.top-panel {
+    position: absolute;
+    left: 1.5%;
+    top: 2.5%;
+    height: 55%;
+    width: 97%;
+    border-radius: 5px;
+    background-color: #2A2A28;
+}
+
+.bottom-panel {
+    position: absolute;
+    left: 1.5%;
+    top: 60%;
+    height: 37.5%;
+    width: 97%;
+    border-radius: 5px;
+}
+
+.input-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -78.75%);
+    height: 40em;
+    width: 65em;
+}
+
+.oscillator {
+    position: absolute;
+    left: 1.5%;
+    top: 4%;
+    height: 92%;
+    width: 18%;
+    border: solid 0.05em;
+    border-color: #F5EEEA;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.envelope-generators {
+    position: absolute;
+    left: 19.5%;
+    top: 4%;
+    height: 92%;
+    width: 46%;
+    border: solid 0.05em;
+    border-color: #F5EEEA;
+}
+
+.filter {
+    position: absolute;
+    left: 65.5%;
+    top: 4%;
+    height: 92%;
+    width: 18%;
+    border: solid 0.05em;
+    border-color: #F5EEEA;
+}
+
+.output {
+    position: absolute;
+    left: 83.5%;
+    top: 4%;
+    height: 92%;
+    width: 15%;
+    border: solid 0.05em;
+    border-color: #F5EEEA;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.presets {
+    position: absolute;
     height: 100%;
-    width: 100%;
-    top: 0px;
-    left: 0px;
+    width: 22.5%;
+    border-radius: 5px;
+    background-color: #E5FEFF;
+
 }
 
 .keyboard {
-    
-}
-
-.top-keys {
-    position: absolute;
-    width: 90%;
-    bottom: 20.5%;
-    left: 5%;
-    text-align: center;
+    position: fixed;
+    right: 1.5%;
+    bottom: 2.5%;
+    height: 37.5%;
+    width: 73.5%;
+    border-radius: 5px;
     background-color: black;
 }
 
-.bottom-keys {
+.top-key-box {
     position: absolute;
-    width: 90%;
-    bottom: 0%;
-    left: 5%;
-    text-align: center;
-    background-color: black;
+    height: 48%;
+    width: 99.5%;
+    top: 25%;
+    left: 50%;
+    margin-top: 0.1%;
+    margin-left: 0.1%;
+    margin-right: 0.1%;
+    transform: translate(-50%, -50%);
+}
+
+.bottom-key-box {
+    position: absolute;
+    height: 48%;
+    width: 99.5%;
+    top: 75%;
+    left: 50%;
+    margin-left: 0.1%;
+    margin-right: 0.1%;
+    transform: translate(-50%, -50%);
 }
 
 .key {
+    width: 9.7%;
+    height: 100%;
+    margin-left: 0.15%;
+    margin-right: 0.15%;
+    font: 1.5em georgia;
+    font-style: oblique;
+    border-radius: 7px;
     background-color: white;
-    width: 9.70%;
-    height: 3.3em;
-    font: 2em courier;
-    margin: 0.03em;
 }
 
+.key:hover {  background-color: rgb(233, 233, 233)}
+
 .pressedKey {
-    background-color: blue;
-    width: 9.70%;
-    height: 3.3em;
-    font: 2em courier;
-    margin: 0.03em;
+    width: 9.7%;
+    height: 100%;
+    margin-left: 0.15%;
+    margin-right: 0.15%;
+    font: 1.5em georgia;
+    font-style: oblique;
+    border-radius: 7px;
+    background-color: gainsboro;
+    transform: translateY(2px);
 }
