@@ -5,14 +5,15 @@ export default class Key extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            synth: new Tone.Synth().toMaster(),
+            synth: new Tone.MonoSynth(this.props.settings).toMaster(),
         }
     }
 
     componentDidUpdate(prevProps) {
+        // Check for key press
         if (this.props.isPressed !== prevProps.isPressed) {
             if (this.props.isPressed) {
-                this.state.synth.triggerAttack('C4');
+                this.state.synth.triggerAttack(this.props.frequency);
             } else {
                 this.state.synth.triggerRelease();
             }
