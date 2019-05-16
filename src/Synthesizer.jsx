@@ -69,7 +69,6 @@ export default class Synthesizer extends React.Component {
         return (
             <div className="synthesizer">
                 <img className="wood-background" src="./assets/light_wood_panel.jpg" alt="wood_panel" />
-                <label>{this.state.currentPitch}</label>
                 <div className="top-panel">
                     <Oscillator />
                     <EnvelopeGenerators />
