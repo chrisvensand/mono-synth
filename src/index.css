@@ -1,24 +1,49 @@
+/* Created By: Christopher Vensand */
+
 .main-view {
+    /* Below is the ordering each class follows */
+
+    /* --------------------------------- */
+    /*  Positioning
+        Display & Box Model
+        Color
+        Text
+        Other
+    */
+    /* --------------------------------- */
+
     position: fixed;
     top: 0em;
     left: 0em;
-    height: 100%;
+
     width: 100%;
+    height: 100%;
+
+    font-family: Futura;
+
+    outline: 0;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 
 .synthesizer {
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
+
     height: 40em;
     width: 65em;
+
+    outline: 0;
 }
 
 .wood-background {
-    object-fit: fill;
-    height: 40em;
     width: 65em;
+    height: 40em;
+    object-fit: fill;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
     border-bottom-left-radius: 1.5em;
@@ -27,217 +52,451 @@
 
 .top-panel {
     position: absolute;
-    left: 1.5%;
     top: 2.5%;
-    height: 55%;
+    left: 1.5%;
+
     width: 97%;
+    height: 55%;
     border-radius: 0.5em;
+
     background-color: #2A2A28;
 }
 
 .bottom-panel {
     position: absolute;
-    left: 1.5%;
     top: 60%;
-    height: 37.5%;
+    left: 1.5%;
+
     width: 97%;
+    height: 37.5%;
     border-radius: 0.5em;
 }
 
 .input-box {
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -78.75%);
-    height: 40em;
+
     width: 65em;
+    height: 40em;
+
+    outline: 0;
 }
 
 .oscillator {
     position: absolute;
-    left: 1.5%;
     top: 4%;
-    height: 92%;
+    left: 1.5%;
+
     width: 18%;
-    border: solid 0.05em;
-    border-color: #F5EEEA;
+    height: 92%;
+    border: solid 0.075em;
     border-top-left-radius: 0.25em;
     border-bottom-left-radius: 0.25em;
+
+    border-color: #F5EEEA;
 }
 
 .envelope-generators {
     position: absolute;
-    left: 19.5%;
     top: 4%;
-    height: 92%;
+    left: 19.5%;
+
     width: 46%;
-    border: solid 0.05em;
+    height: 92%;
+    border: solid 0.075em;
+
     border-color: #F5EEEA;
 }
 
 .filter {
     position: absolute;
-    left: 65.5%;
     top: 4%;
-    height: 92%;
+    left: 65.5%;
+
     width: 18%;
-    border: solid 0.05em;
+    height: 92%;
+    border: solid 0.075em;
+
     border-color: #F5EEEA;
 }
 
 .output {
     position: absolute;
-    left: 83.5%;
     top: 4%;
-    height: 92%;
+    left: 83.5%;
+
     width: 15%;
-    border: solid 0.05em;
-    border-color: #F5EEEA;
+    height: 92%;
+    border: solid 0.075em;
     border-top-right-radius: 0.2em;
     border-bottom-right-radius: 0.25em;
+
+    border-color: #F5EEEA;
 }
 
 .panel-label-left {
     position: absolute;
-    text-align: center;
+
     width: 100%;
-    border-top-left-radius: 0.1em;
+    height: 7%;
+    border-top-left-radius: 0.2em;
+
     background-color: #F5EEEA;
+
+    text-align: center;
 }
 
 .panel-label-center {
     position: absolute;
-    text-align: center;
+
     width: 100%;
+    height: 7%;
+
     background-color: #F5EEEA;
+
+    text-align: center;
 }
 
 .panel-label-right {
     position: absolute;
-    text-align: center;
+
     width: 100%;
-    border-top-right-radius: 0.1em;
+    height: 7%;
+    border-top-right-radius: 0.2em;
+
     background-color: #F5EEEA;
+
+    text-align: center;
+}
+
+.knob-box {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 93%;
+}
+
+.knob-box img {
+    max-width: 100%;
+}
+
+.wave-knob {
+    position: absolute;
+    top: 9.25%;
+    left: 30%;
+
+    width: 40%;
+    height: 24%;
+}
+
+.wave-label {
+    position: absolute;
+    top: 4.25%;
+}
+
+.detune-knob {
+    position: absolute;
+    top: 39.5%;
+    left: 30%;
+
+    width: 40%;
+    height: 24%;
+}
+
+.detune-label {
+    position: absolute;
+    top: 34.5%;
+}
+
+.phase-knob {
+    position: absolute;
+    top: 69.75%;
+    left: 30%;
+
+    width: 40%;
+    height: 24%;
+}
+
+.phase-label {
+    position: absolute;
+    top: 64.75%;
+}
+
+.filter-envelope-box {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 50%;
+}
+
+.amplitude-envelope-box {
+    position: absolute;
+    bottom: 0;
+    
+    width: 100%;
+    height: 50%;
+}
+
+.attack-knob {
+    position: absolute;
+    top: 26.75%;
+    left: 6%;
+
+    width: 17.5%;
+    height: 52.5%;
+}
+
+.decay-knob {
+    position: absolute;
+    top: 26.75%;
+    left: 29.5%;
+
+    width: 17.5%;
+    height: 52.5%;
+}
+
+.sustain-knob {
+    position: absolute;
+    top: 26.75%;
+    left: 53%;
+
+    width: 17.5%;
+    height: 52.5%;
+}
+
+.release-knob {
+    position: absolute;
+    top: 26.75%;
+    left: 76.5%;
+
+    width: 17.5%;
+    height: 52.5%;
+}
+
+.frequency-knob {
+    position: absolute;
+    top: 9.25%;
+    left: 30%;
+
+    width: 40%;
+    height: 24%;
+}
+
+.type-knob {
+    position: absolute;
+    top: 39.5%;
+    left: 30%;
+
+    width: 40%;
+    height: 24%;
+}
+
+.rolloff-knob {
+    position: absolute;
+    top: 69.75%;
+    left: 30%;
+
+    width: 40%;
+    height: 24%;
+}
+
+.volume-knob {
+    position: absolute;
+    top: 6.25%;
+    left: 17.5%;
+
+    width: 65%;
+    height: 32.5%;
 }
 
 .presets {
     position: absolute;
-    height: 100%;
-    width: 22.5%;
-    border-radius: 0.5em;
-    background-color: #F5EEEA;
 
+    width: 22.5%;
+    height: 100%;
+    border-radius: 0.5em;
+
+    background-color: #F5EEEA;
 }
 
 .preset-content {
     position: absolute;
-    left: 50%;
     top: 50%;
-    height: 90%;
-    width: 90%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    border: 0.15em solid #2A2A28;
+
+    width: 90%;
+    height: 90%;
     border-radius: 0.5em;
+
+    border: 0.2em solid #2A2A28;
+
+    vertical-align: center;
 }
 
 .preset-header {
     position: absolute;
+
     width: 100%;
+    height: 11%;
+
     background-color: #2A2A28;
 }
 
 .preset-label {
     position: absolute;
-    left: 5%;
-    width: 100%;
-    color: #F5EEEA;
-}
 
-.preset-random-button-container {
-    text-align: right;
-    width: 97.5%;
-    height: 90%;
+    width: 100%;
+
+    color: #F5EEEA;
+
+    text-indent: 0.5em;
 }
 
 .preset-random-button {
+    position: absolute;
+    transform: translate(50%, 50%);
+
+    bottom: 50%;
+    right: 10%;
+    border-radius: 0.25em;
+    outline: none;
+
     color: #F5EEEA;
     border: 0.1em solid #F5EEEA;
-    border-radius: 0.25em;
     background-color: #2A2A28;
+}
+
+.preset-random-button:hover {
+    border-radius: 0.25em;
+
+    color: #2A2A28;
+    border: 0.1em solid #2A2A28;
+    background-color: #F5EEEA;
 }
 
 .preset-vertical-menu {
     position: absolute;
-    top: 2%;
-    height: 92%;
+    margin: auto;
+    padding-left: 0;
+    bottom: 0;
+
     width: 100%;
+    height: 89%;
+    border-radius: 0.3em;
+
     overflow: hidden;
     overflow-y: scroll;
 }
 
 .preset-vertical-menu li {
-    display: block;
-    color: green;
+    border: none;
+
+    color: #2A2A28;
+
+    line-height: 1.5em;
+    text-indent: 0.5em;
 }
 
 .preset-vertical-menu li:hover {
-    background-color: black;
+    background-color: #CEECFD;
+}
+
+.preset-vertical-menu li.active {
+    border-radius: 0.25em;
+
+    background-color: #CEECFD;
+}
+
+.preset-vertical-menu li .contents {
+    position: absolute;
+
+    width: 100%;
+
+    text-align: left;
+}
+
+.preset-vertical-menu li .contents .number {
+    position: absolute;
+
+    width: 20%;
+}
+
+.preset-vertical-menu li .contents .name {
+    position: absolute;
+    left: 20%;
+
+    width: 80%;
 }
 
 .keyboard {
     position: fixed;
-    right: 1.5%;
     bottom: 2.5%;
-    height: 37.5%;
+    right: 1.5%;
+
     width: 73.5%;
+    height: 37.5%;
     border-radius: 0.5em;
+
     background-color: black;
 }
 
 .top-key-box {
     position: absolute;
-    height: 48%;
-    width: 99.5%;
-    top: 25%;
-    left: 50%;
     margin-top: 0.1%;
     margin-left: 0.1%;
     margin-right: 0.1%;
+    top: 25%;
+    left: 50%;
     transform: translate(-50%, -50%);
+
+    width: 99.5%;
+    height: 48%;
 }
 
 .bottom-key-box {
     position: absolute;
-    height: 48%;
-    width: 99.5%;
-    top: 75%;
-    left: 50%;
     margin-left: 0.1%;
     margin-right: 0.1%;
+    top: 75%;
+    left: 50%;
     transform: translate(-50%, -50%);
+
+    width: 99.5%;
+    height: 48%;
 }
 
 .key {
-    width: 9.7%;
-    height: 100%;
     margin-left: 0.15%;
     margin-right: 0.15%;
-    font: 1.5em georgia;
-    font-style: oblique;
+
+    width: 9.7%;
+    height: 100%;
     border-radius: 7px;
+    outline: none;
+
     background-color: white;
+
+    font: 1.4em Futura;
 }
 
-.key:hover {  background-color: rgb(233, 233, 233)}
+.key:hover {  background-color: rgb(233, 233, 233) }
 
-.pressedKey {
-    width: 9.7%;
-    height: 100%;
+.pressed-key {
     margin-left: 0.15%;
     margin-right: 0.15%;
-    font: 1.5em georgia;
-    font-style: oblique;
-    border-radius: 7px;
-    background-color: gainsboro;
     transform: translateY(2px);
+
+    width: 9.7%;
+    height: 100%;
+    border-radius: 7px;
+    outline: none;
+
+    background-color: gainsboro;
+
+    font: 1.4em Futura;
 }
