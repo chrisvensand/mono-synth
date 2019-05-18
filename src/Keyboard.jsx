@@ -6,7 +6,6 @@ export default class Keyboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            settings: this.props.preset,
             pitch: this.props.pitch,
             isPressed: {
                 'A': false,
@@ -28,7 +27,7 @@ export default class Keyboard extends React.Component {
                 'U': false,
                 'I': false,
                 'O': false,
-                'P': false,
+                'P': false
             },
             frequency: {
                 'A': 261.6256,
@@ -50,8 +49,8 @@ export default class Keyboard extends React.Component {
                 'U': 508.3551,
                 'I': 554.3653,
                 'O': 622.2540,
-                'P': 678.5727,
-            },
+                'P': 678.5727
+            }
         };
     }
 
@@ -72,10 +71,9 @@ export default class Keyboard extends React.Component {
     }
 
     pressKey = (k, pressed) => {
-        // convert all input to upper case
         let key = k.toUpperCase();
 
-        // update state of pressed keys
+        // update state of the pressed key
         if (key in this.state.isPressed && this.state.isPressed[key] !== pressed) {
             let copy = this.state.isPressed;
             copy[key] = !copy[key];
@@ -85,15 +83,6 @@ export default class Keyboard extends React.Component {
 
     handleChangePitch = (event) => {
         console.log(event);
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.preset !== prevProps.preset) {
-            this.setState({settings: prevProps.preset});
-        }
-        if (this.props.pitch !== prevProps.pitch) {
-            console.log(this.props.pitch);
-        }
     }
 
     render() {
@@ -107,7 +96,7 @@ export default class Keyboard extends React.Component {
                         { topKeys.map((value, index) => {
                             return <Key key={index}
                                         letter={value}
-                                        settings={this.state.settings}
+                                        settings={this.props.preset}
                                         isPressed={this.state.isPressed[value]}
                                         frequency={this.state.frequency[value]}
                                         handleMouseDown={this.handleMouseDown}
@@ -118,7 +107,7 @@ export default class Keyboard extends React.Component {
                         { bottomKeys.map((value, index) => {
                             return <Key key={index}
                                         letter={value}
-                                        settings={this.state.settings}
+                                        settings={this.props.preset}
                                         isPressed={this.state.isPressed[value]}
                                         frequency={this.state.frequency[value]}
                                         handleMouseDown={this.handleMouseDown}
