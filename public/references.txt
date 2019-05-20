@@ -1,1 +1,2 @@
-https://en.wikipedia.org/wiki/Piano_key_frequencies
+Knob functionality by Daniel Subat on Codepen
+https://codepen.io/bbx/pen/QBKYOy?&page=1
