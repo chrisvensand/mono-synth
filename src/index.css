@@ -19,6 +19,8 @@
     width: 100%;
     height: 100%;
 
+    background-color: dimgrey;
+
     font-family: Futura;
 
     outline: 0;
@@ -26,6 +28,26 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+}
+
+.github-ref {
+    position: absolute;
+    width: 3em;
+    height: 3em;
+}
+
+.personal-ref {
+    position: absolute;
+    left: 3em;
+    width: 4em;
+    height: 3em;
+}
+
+.picture {
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .synthesizer {
@@ -36,8 +58,12 @@
 
     height: 40em;
     width: 65em;
+    border-radius: 1.5em;
 
     outline: 0;
+
+    -webkit-box-shadow: 0.5em 0.5em 1.5em 0.5em #000000; 
+    box-shadow: 0.5em 0.5em 1.5em 0.5em #000000;
 }
 
 .wood-background {
@@ -110,6 +136,21 @@
     border-color: #F5EEEA;
 }
 
+.envelope-label {
+    position: absolute;
+    top: 6%;
+    left: 2%;
+    width: 6%;
+    height: 16%;
+    border-radius: .1em;
+
+    color: #2A2A28;
+    background-color: #F5EEEA;
+
+    text-align: center;
+    vertical-align: center;
+}
+
 .filter {
     position: absolute;
     top: 4%;
@@ -177,6 +218,114 @@
 
     width: 100%;
     height: 93%;
+
+    color: #F5EEEA;
+}
+
+.knob-controller {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.knob-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.knob-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.envelope-content {
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    width: 65%;
+    border-radius: 0.5em;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    vertical-align: center;
+
+    background-color: #000000;
+
+    pointer-events: none;
+}
+
+.oscillator-content {
+    position: absolute;
+    top: 51%;
+    left: 155%;
+    width: 70%;
+    border-radius: 0.5em;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    vertical-align: center;
+
+    background-color: #000000;
+
+    pointer-events: none;
+}
+
+.filter-content {
+    position: absolute;
+    top: 51%;
+    left: 155%;
+    width: 70%;
+    border-radius: 0.5em;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    vertical-align: center;
+
+    background-color: #000000;
+
+    pointer-events: none;
+}
+
+.volume-content {
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    width: 70%;
+    border-radius: 0.5em;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    vertical-align: center;
+
+    background-color: #000000;
+
+    pointer-events: none;
+}
+
+.string-knob-label {
+    position: absolute;
+    top: 50%;
+    left: 155%;
+    width: 115%;
+    border-radius: 0.5em;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    vertical-align: center;
+    font-family: Futura;
+    font-size: 0.8em;
+
+    background-color: #000000;
 }
 
 .knob-box img {
@@ -185,8 +334,8 @@
 
 .wave-knob {
     position: absolute;
-    top: 9.25%;
-    left: 30%;
+    top: 14.25%;
+    left: 10%;
 
     width: 40%;
     height: 24%;
@@ -194,13 +343,15 @@
 
 .wave-label {
     position: absolute;
-    top: 4.25%;
+    top: 9.25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .detune-knob {
     position: absolute;
-    top: 39.5%;
-    left: 30%;
+    top: 44.5%;
+    left: 10%;
 
     width: 40%;
     height: 24%;
@@ -208,13 +359,15 @@
 
 .detune-label {
     position: absolute;
-    top: 34.5%;
+    top: 41.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .phase-knob {
     position: absolute;
-    top: 69.75%;
-    left: 30%;
+    top: 74.75%;
+    left: 10%;
 
     width: 40%;
     height: 24%;
@@ -222,7 +375,9 @@
 
 .phase-label {
     position: absolute;
-    top: 64.75%;
+    top: 71.75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .filter-envelope-box {
@@ -239,6 +394,8 @@
     
     width: 100%;
     height: 50%;
+
+
 }
 
 .attack-knob {
@@ -250,6 +407,15 @@
     height: 52.5%;
 }
 
+.attack-label {
+    position: absolute;
+    top: 19%;
+    left: 14.75%;
+    transform: translate(-50%, -50%);
+
+    font-size: 0.8em;
+}
+
 .decay-knob {
     position: absolute;
     top: 26.75%;
@@ -257,6 +423,15 @@
 
     width: 17.5%;
     height: 52.5%;
+}
+
+.decay-label {
+    position: absolute;
+    top: 19%;
+    left: 38.25%;
+    transform: translate(-50%, -50%);
+
+    font-size: 0.8em;
 }
 
 .sustain-knob {
@@ -268,6 +443,15 @@
     height: 52.5%;
 }
 
+.sustain-label {
+    position: absolute;
+    top: 19%;
+    left: 61.75%;
+    transform: translate(-50%, -50%);
+
+    font-size: 0.8em;
+}
+
 .release-knob {
     position: absolute;
     top: 26.75%;
@@ -277,40 +461,77 @@
     height: 52.5%;
 }
 
+.release-label {
+    position: absolute;
+    top: 19%;
+    left: 85.25%;
+    transform: translate(-50%, -50%);
+
+    font-size: 0.8em;
+}
+
 .frequency-knob {
     position: absolute;
-    top: 9.25%;
-    left: 30%;
+    top: 13.25%;
+    left: 10%;
 
     width: 40%;
     height: 24%;
+}
+
+.frequency-label {
+    position: absolute;
+    top: 8.25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .type-knob {
     position: absolute;
-    top: 39.5%;
-    left: 30%;
+    top: 43.5%;
+    left: 10%;
 
     width: 40%;
     height: 24%;
+}
+
+.type-label {
+    position: absolute;
+    top: 40.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .rolloff-knob {
     position: absolute;
-    top: 69.75%;
-    left: 30%;
+    top: 73.75%;
+    left: 10%;
 
     width: 40%;
     height: 24%;
 }
 
+.rolloff-label {
+    position: absolute;
+    top: 71.75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .volume-knob {
     position: absolute;
-    top: 6.25%;
-    left: 17.5%;
+    top: 12.25%;
+    left: 15.5%;
 
-    width: 65%;
-    height: 32.5%;
+    width: 70%;
+    height: 35%;
+}
+
+.volume-label {
+    position: absolute;
+    top: 8.25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .presets {
@@ -500,3 +721,12 @@
 
     font: 1.4em Futura;
 }
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+  }
