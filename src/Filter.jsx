@@ -1,21 +1,37 @@
 import React from 'react';
-import './index.css';
+import Knob from './Knob.jsx';
 
 export default class Filter extends React.Component {
+
+    handlePresetModification = (setting, val) => {
+        this.props.modifyPreset("filter", setting, val);
+    }
+
     render() {
         return(
             <div className="filter">
                 <div className="panel-label-center">Filter</div>
                 <div className="knob-box">
-                    <div className="frequency-knob">
-                        <img src="./assets/Knob.png" alt="Knob" />
-                    </div>
-                    <div className="type-knob">
-                        <img src="./assets/Knob.png" alt="Knob" />
-                    </div>
-                    <div className="rolloff-knob">
-                        <img src="./assets/Knob.png" alt="Knob" />
-                    </div>
+                    <label className="frequency-label">Frequency</label>
+                    <Knob   name="frequency-knob"
+                            label="filter-content"
+                            value={this.props.settings["frequency"]}
+                            setting="frequency"
+                            modifyPreset={this.handlePresetModification}
+                            />
+                    <label className="type-label">Type</label>
+                    <Knob   name="type-knob"
+                            value={this.props.settings["type"]}
+                            setting="type"
+                            modifyPreset={this.handlePresetModification}
+                            />
+                    <label className="rolloff-label">Rolloff</label>
+                    <Knob   name="rolloff-knob"
+                            label="filter-content"
+                            value={this.props.settings["rolloff"]}
+                            setting="rolloff"
+                            modifyPreset={this.handlePresetModification}
+                            />
                 </div>
             </div>
         );

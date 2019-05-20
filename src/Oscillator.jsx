@@ -1,24 +1,37 @@
 import React from 'react';
-import './index.css';
+import Knob from './Knob.jsx';
 
 export default class Oscillator extends React.Component {
+    
+    handlePresetModification = (setting, val) => {
+        this.props.modifyPreset("oscillator", setting, val);
+    }
+
     render() {
         return(
-            <div className="oscillator">
+            <div className="oscillator" onClick={this.handleClick} tabIndex="0">
                 <div className="panel-label-left">Oscillator</div>
                 <div className="knob-box">
                     <label className="wave-label">Wave</label>
-                    <div className="wave-knob">
-                        <img src="./assets/Knob.png" alt="Knob" />
-                    </div>
+                    <Knob   setting="type"
+                            name="wave-knob"
+                            value={this.props.settings["type"]}
+                            modifyPreset={this.handlePresetModification}
+                            />
                     <label className="detune-label">Detune</label>
-                    <div className="detune-knob">
-                        <img src="./assets/Knob.png" alt="Knob" />
-                    </div>
+                    <Knob   setting="detune"
+                            label="oscillator-content"
+                            name="detune-knob"
+                            value={this.props.settings["detune"]}
+                            modifyPreset={this.handlePresetModification}
+                            />
                     <label className="phase-label">Phase</label>
-                    <div className="phase-knob">
-                        <img src="./assets/Knob.png" alt="Knob" />
-                    </div>
+                    <Knob   setting="phase"
+                            label="oscillator-content"
+                            name="phase-knob"
+                            value={this.props.settings["phase"]}
+                            modifyPreset={this.handlePresetModification}
+                            />
                 </div>
             </div>
         );
