@@ -1,6 +1,5 @@
 import React from 'react';
 import PresetList from './PresetList.jsx'
-import './index.css';
 
 export default class Presets extends React.Component {
     render() {
@@ -11,9 +10,6 @@ export default class Presets extends React.Component {
                         <label className="preset-label">
                             Preset: {this.props.currentPreset}
                         </label>
-                        <button className="preset-random-button"
-                                onClick={this.props.handleRandomPresetChange}
-                                tabIndex="1"> ? </button>
                     </div>
                     <PresetList presetNames={this.props.presetNames}
                                 currentPreset={this.props.currentPreset}

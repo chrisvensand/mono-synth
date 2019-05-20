@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 
 export default class ListItem extends React.Component {
     constructor(props) {

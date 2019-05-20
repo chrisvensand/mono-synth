@@ -1,6 +1,5 @@
 import React from 'react';
 import Key from './Key.jsx';
-import './index.css';
 
 export default class Keyboard extends React.Component {
     constructor(props) {
