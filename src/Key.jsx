@@ -20,6 +20,7 @@ export default class Key extends React.Component {
         }
         // Check for a preset sound change
         if (this.props.settings !== prevProps.settings) {
+            this.state.synth.dispose();
             this.setState({synth: new Tone.MonoSynth(this.props.settings).toMaster()});
         }
     }
