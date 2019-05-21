@@ -20,3 +20,11 @@ Once you find a preset you enjoy, change a few parameters to customize it.
 ![](public/assets/keyboardexample.gif)
 <br />
 After everything is ready, click on one of the keys and use your keyboard to play.
+
+# Contributing
+There are many ways to contribute to MonoSynth. First off I have no idea how to manage garbage collection with Tone.js. If someone could find a way to delete old Tone.Synth obects that would be greatly appreciated. Next, whenever a setting is changed the keyboard / tone is not reloaded. This seems like an easy fix and great starting point to help. Thank you for taking an interest in this project.
+
+# Referances and Inspiration
+* [Tone.js](https://tonejs.github.io/)
+* [Moog Sub 37](https://www.moogmusic.com/products/sub-37)
+* [Knob / Dial by Daniel Subat](https://codepen.io/bbx/pen/QBKYOy)
