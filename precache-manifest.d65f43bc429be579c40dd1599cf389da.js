@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "93df9d4cf00163a570868abbc25f929d",
+    "revision": "1f74eea51f84d3d43aaa5375cdf61743",
     "url": "/monosynth/index.html"
   },
   {
-    "revision": "68e95b1cc8ac6da3bfd2",
-    "url": "/monosynth/static/css/main.12f36bd2.chunk.css"
+    "revision": "eeb43c5c31764b86dd61",
+    "url": "/monosynth/static/css/main.f346426b.chunk.css"
   },
   {
     "revision": "da193e3445521ab08de2",
     "url": "/monosynth/static/js/2.7c067087.chunk.js"
   },
   {
-    "revision": "68e95b1cc8ac6da3bfd2",
+    "revision": "eeb43c5c31764b86dd61",
     "url": "/monosynth/static/js/main.87ecfb0b.chunk.js"
   },
   {
