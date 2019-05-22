@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/monosynth/static/css/main.f346426b.chunk.css",
-    "main.js": "/monosynth/static/js/main.87ecfb0b.chunk.js",
-    "main.js.map": "/monosynth/static/js/main.87ecfb0b.chunk.js.map",
+    "main.css": "/monosynth/static/css/main.12f36bd2.chunk.css",
+    "main.js": "/monosynth/static/js/main.340ffffb.chunk.js",
+    "main.js.map": "/monosynth/static/js/main.340ffffb.chunk.js.map",
     "runtime~main.js": "/monosynth/static/js/runtime~main.013aee5e.js",
     "runtime~main.js.map": "/monosynth/static/js/runtime~main.013aee5e.js.map",
     "static/js/2.7c067087.chunk.js": "/monosynth/static/js/2.7c067087.chunk.js",
     "static/js/2.7c067087.chunk.js.map": "/monosynth/static/js/2.7c067087.chunk.js.map",
     "index.html": "/monosynth/index.html",
-    "precache-manifest.d65f43bc429be579c40dd1599cf389da.js": "/monosynth/precache-manifest.d65f43bc429be579c40dd1599cf389da.js",
+    "precache-manifest.4af0ec514fb5ce0dd4b13a1aedb9c4d8.js": "/monosynth/precache-manifest.4af0ec514fb5ce0dd4b13a1aedb9c4d8.js",
     "service-worker.js": "/monosynth/service-worker.js",
-    "static/css/main.f346426b.chunk.css.map": "/monosynth/static/css/main.f346426b.chunk.css.map"
+    "static/css/main.12f36bd2.chunk.css.map": "/monosynth/static/css/main.12f36bd2.chunk.css.map"
   }
 }
