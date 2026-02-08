@@ -26,7 +26,7 @@ export default class Knob extends React.Component {
 
         return(
             <div className={this.props.name}>
-                <img src="./assets/Knob.png" alt="Knob" />
+                <img src={process.env.PUBLIC_URL + "/assets/Knob.png"} alt="Knob" />
                 <KnobController
                     className="knob-controller"
                     modifyPreset={this.handlePresetModification}
