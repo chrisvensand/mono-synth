@@ -446,7 +446,7 @@ export default class Synthesizer extends React.Component {
         
         return (
             <div className="synthesizer">
-                <img className="wood-background" src="./assets/light_wood_panel.jpg" alt="wood_panel" />
+                <img className="wood-background" src={process.env.PUBLIC_URL + "/assets/light_wood_panel.jpg"} alt="wood_panel" />
                 <div className="bottom-panel">
                     <Keyboard   preset={this.state.presets[this.state.currentPreset]}
                                 pitch={this.state.currentPitch} />

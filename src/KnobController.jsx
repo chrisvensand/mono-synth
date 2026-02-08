@@ -89,7 +89,7 @@ export default class KnobController extends React.Component {
                 <div className="knob-inner" >
                     <div className="grip" />
                     </div>
-                <img style={iStyle} src="./assets/Knob.png" alt="Knob" />
+                <img style={iStyle} src={process.env.PUBLIC_URL + "/assets/Knob.png"} alt="Knob" />
             </div>
         </div>
       );
