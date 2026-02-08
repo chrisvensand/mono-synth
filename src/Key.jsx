@@ -1,40 +1,55 @@
-import React from 'react';
-import Tone from 'tone';
+import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import Tone from "tone";
 
-export default class Key extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            synth: new Tone.MonoSynth(this.props.settings).toMaster(),
-        }
+export default function Key({
+  letter,
+  settings,
+  isPressed,
+  frequency,
+  handleMouseDown,
+  handleMouseUp,
+}) {
+  const synthRef = useRef(null);
+
+  useEffect(() => {
+    synthRef.current = new Tone.MonoSynth(settings).toMaster();
+    return () => {
+      if (synthRef.current) {
+        synthRef.current.dispose();
+        synthRef.current = null;
+      }
+    };
+  }, [settings]);
+
+  useEffect(() => {
+    if (!synthRef.current) return;
+    if (isPressed) {
+      synthRef.current.triggerAttack(frequency);
+    } else {
+      synthRef.current.triggerRelease();
     }
+  }, [isPressed, frequency]);
 
-    componentDidUpdate(prevProps) {
-        // Check for a change in the pressed state of the key
-        if (this.props.isPressed !== prevProps.isPressed) {
-            if (this.props.isPressed) {
-                this.state.synth.triggerAttack(this.props.frequency);
-            } else {
-                this.state.synth.triggerRelease();
-            }
-        }
-        // Check for a preset sound change
-        if (this.props.settings !== prevProps.settings) {
-            this.state.synth.dispose();
-            this.setState({synth: new Tone.MonoSynth(this.props.settings).toMaster()});
-        }
-    }
+  const className = isPressed ? "pressed-key" : "key";
 
-    render() {
-        let name = this.props.isPressed ? "pressed-key" : "key"
-
-        return (
-            <button id={this.props.letter}
-                    className={name}
-                    onMouseDown={this.props.handleMouseDown}
-                    onMouseUp={this.props.handleMouseUp}>
-                {this.props.letter}
-            </button>
-        );
-    }
+  return (
+    <button
+      id={letter}
+      className={className}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+    >
+      {letter}
+    </button>
+  );
 }
+
+Key.propTypes = {
+  letter: PropTypes.string.isRequired,
+  settings: PropTypes.object.isRequired,
+  isPressed: PropTypes.bool.isRequired,
+  frequency: PropTypes.number.isRequired,
+  handleMouseDown: PropTypes.func.isRequired,
+  handleMouseUp: PropTypes.func.isRequired,
+};

@@ -1,57 +1,35 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
+import { formatPresetNumber } from "./presetUtils";
 
-export default class ListItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            active: false
-        }
-    }
+export default function ListItem({
+  name,
+  presetNumber,
+  currentPreset,
+  handlePresetChange,
+}) {
+  const isActive = currentPreset === name;
+  const activeState = isActive ? "active" : "not-active";
 
-    componentDidMount() {
-        if (this.props.currentPreset === this.props.name) {
-            this.setState({active: true});
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.currentPreset !== prevProps.currentPreset) {
-            if (this.props.name === this.props.currentPreset || this.props.name === prevProps.currentPreset){
-                this.setState(state => ({
-                    active: !state.active
-                }));
-            }
-        }
-    }
-
-    formatedPresetNumber() {
-        if (this.props.presetNumber < 10) {
-            return "00" + String(this.props.presetNumber);
-        } else if (this.props.presetNumber < 100) {
-            return "0" + String(this.props.presetNumber);
-        } else {
-            return String(this.props.presetNumber);
-        }
-    }
-
-    render() {
-        let activeState = this.state.active ? "active" : "not-active";
-
-        return(
-            <li id={this.props.name}
-                className={activeState}
-                onClick={this.props.handlePresetChange}
-                onKeyDown={this.props.handlePresetChange}
-                tabIndex="0">
-                <div className="contents">
-                    <div className="number">
-                        {this.formatedPresetNumber()}
-                    </div>
-                    <div className="name">
-                        {this.props.name}
-                    </div>
-                </div>
-            </li>
-        );
-    }
+  return (
+    <li
+      id={name}
+      className={activeState}
+      onClick={handlePresetChange}
+      onKeyDown={handlePresetChange}
+      tabIndex="0"
+    >
+      <div className="contents">
+        <div className="number">{formatPresetNumber(presetNumber)}</div>
+        <div className="name">{name}</div>
+      </div>
+    </li>
+  );
 }
+
+ListItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  presetNumber: PropTypes.number.isRequired,
+  currentPreset: PropTypes.string.isRequired,
+  handlePresetChange: PropTypes.func.isRequired,
+};
