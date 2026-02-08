@@ -1,120 +1,99 @@
-import React from 'react';
-import Key from './Key.jsx';
+import React, { useState, useCallback, useMemo } from "react";
+import PropTypes from "prop-types";
+import Key from "./Key.jsx";
+import {
+  BASE_FREQUENCIES,
+  TOP_KEYS,
+  BOTTOM_KEYS,
+  ALL_KEYS,
+  DEFAULT_PITCH,
+} from "./constants";
+import { getFrequenciesForPitch } from "./presetUtils";
 
-export default class Keyboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            pitch: this.props.pitch,
-            isPressed: {
-                'A': false,
-                'S': false,
-                'D': false,
-                'F': false,
-                'G': false,
-                'H': false,
-                'J': false,
-                'K': false,
-                'L': false,
-                ';': false,
-                'Q': false,
-                'W': false,
-                'E': false,
-                'R': false,
-                'T': false,
-                'Y': false,
-                'U': false,
-                'I': false,
-                'O': false,
-                'P': false
-            },
-            frequency: {
-                'A': 261.6256,
-                'S': 293.6648,
-                'D': 329.6276,
-                'F': 349.2282,
-                'G': 391.9954,
-                'H': 440.0000,
-                'J': 493.8833,
-                'K': 523.2511,
-                'L': 587.3295,
-                ';': 659.2551,
-                'Q': 277.1826,
-                'W': 311.1270,
-                'E': 339.2863,
-                'R': 369.9944,
-                'T': 415.3047,
-                'Y': 466.1638,
-                'U': 508.3551,
-                'I': 554.3653,
-                'O': 622.2540,
-                'P': 678.5727
-            }
-        };
-    }
+export default function Keyboard({ preset, pitch }) {
+  const [isPressed, setIsPressed] = useState(() => {
+    const initial = {};
+    ALL_KEYS.forEach((key) => {
+      initial[key] = false;
+    });
+    return initial;
+  });
 
-    handleKeyDownEvent = (event) => {
-        this.pressKey(event.key, true);
-    }
+  const frequencies = useMemo(
+    () => getFrequenciesForPitch(BASE_FREQUENCIES, pitch, DEFAULT_PITCH),
+    [pitch]
+  );
 
-    handleKeyUpEvent = (event) => {
-        this.pressKey(event.key, false);
-    }
+  const pressKey = useCallback((k, pressed) => {
+    const key = k.toUpperCase();
+    setIsPressed((prev) => {
+      if (key in prev && prev[key] !== pressed) {
+        return { ...prev, [key]: pressed };
+      }
+      return prev;
+    });
+  }, []);
 
-    handleMouseDown = (event) => {
-        this.pressKey(event.currentTarget.id, true);
-    }
+  const handleKeyDown = useCallback(
+    (event) => pressKey(event.key, true),
+    [pressKey]
+  );
 
-    handleMouseUp = (event) => {
-        this.pressKey(event.currentTarget.id, false);
-    }
+  const handleKeyUp = useCallback(
+    (event) => pressKey(event.key, false),
+    [pressKey]
+  );
 
-    pressKey = (k, pressed) => {
-        let key = k.toUpperCase();
+  const handleMouseDown = useCallback(
+    (event) => pressKey(event.currentTarget.id, true),
+    [pressKey]
+  );
 
-        // update state of the pressed key
-        if (key in this.state.isPressed && this.state.isPressed[key] !== pressed) {
-            let copy = this.state.isPressed;
-            copy[key] = !copy[key];
-            this.setState({isPressed: copy});
-        }
-    }
+  const handleMouseUp = useCallback(
+    (event) => pressKey(event.currentTarget.id, false),
+    [pressKey]
+  );
 
-    handleChangePitch = (event) => {
-        console.log(event);
-    }
-
-    render() {
-        const topKeys = ['Q','W','E','R','T','Y','U','I','O','P'];
-        const bottomKeys = ['A','S','D','F','G','H','J','K','L',';'];
-
-        return (
-            <div className="input-box" onKeyDown={this.handleKeyDownEvent} onKeyUp={this.handleKeyUpEvent} tabIndex="0">
-                <div className="keyboard">
-                    <div className="top-key-box">
-                        { topKeys.map((value, index) => {
-                            return <Key key={index}
-                                        letter={value}
-                                        settings={this.props.preset}
-                                        isPressed={this.state.isPressed[value]}
-                                        frequency={this.state.frequency[value]}
-                                        handleMouseDown={this.handleMouseDown}
-                                        handleMouseUp={this.handleMouseUp} /> 
-                        })}
-                    </div>
-                    <div className="bottom-key-box">
-                        { bottomKeys.map((value, index) => {
-                            return <Key key={index}
-                                        letter={value}
-                                        settings={this.props.preset}
-                                        isPressed={this.state.isPressed[value]}
-                                        frequency={this.state.frequency[value]}
-                                        handleMouseDown={this.handleMouseDown}
-                                        handleMouseUp={this.handleMouseUp} /> 
-                        })}
-                    </div>
-                </div>
-            </div>
-        );
-    }
+  return (
+    <div
+      className="input-box"
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
+      tabIndex="0"
+    >
+      <div className="keyboard">
+        <div className="top-key-box">
+          {TOP_KEYS.map((value) => (
+            <Key
+              key={value}
+              letter={value}
+              settings={preset}
+              isPressed={isPressed[value]}
+              frequency={frequencies[value]}
+              handleMouseDown={handleMouseDown}
+              handleMouseUp={handleMouseUp}
+            />
+          ))}
+        </div>
+        <div className="bottom-key-box">
+          {BOTTOM_KEYS.map((value) => (
+            <Key
+              key={value}
+              letter={value}
+              settings={preset}
+              isPressed={isPressed[value]}
+              frequency={frequencies[value]}
+              handleMouseDown={handleMouseDown}
+              handleMouseUp={handleMouseUp}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
+
+Keyboard.propTypes = {
+  preset: PropTypes.object.isRequired,
+  pitch: PropTypes.number.isRequired,
+};

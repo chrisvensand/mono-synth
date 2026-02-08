@@ -1,53 +1,44 @@
-import React from 'react';
-import KnobController from './KnobController.jsx';
+import React, { useState, useCallback } from "react";
+import PropTypes from "prop-types";
+import KnobController from "./KnobController.jsx";
 
-export default class Knob extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: 0
-        }
-    }
+export default function Knob({ setting, name, value, label, modifyPreset }) {
+  const [, setInternalValue] = useState(0);
 
-    handleChange = (newValue) => {
-        this.setState({value: newValue});
-    }
+  const handleChange = useCallback((newValue) => {
+    setInternalValue(newValue);
+  }, []);
 
-    handlePresetModification = (val) => {
-        this.props.modifyPreset(this.props.setting, val);
-    }
+  const handlePresetModification = useCallback(
+    (val) => modifyPreset(setting, val),
+    [modifyPreset, setting]
+  );
 
-    returnCorrectTags(isString, value) {
-        let content = "string-knob-label";
+  const isString = typeof value === "string";
+  const contentClass = isString ? "string-knob-label" : label;
 
-        if (!isString) {
-            content = this.props.label;
-        }
-
-        return(
-            <div className={this.props.name}>
-                <img src={process.env.PUBLIC_URL + "/assets/Knob.png"} alt="Knob" />
-                <KnobController
-                    className="knob-controller"
-                    modifyPreset={this.handlePresetModification}
-                    numTicks={25}
-                    degrees={270}
-                    min={1}
-                    max={100}
-                    value={30}
-                    onChange={this.handleChange}
-                />
-                <label className={content}>{value}</label>
-            </div>
-        );
-    }
-
-    render() {
-        let value = this.props.value;
-        if (typeof(value) === "string") {
-            return(this.returnCorrectTags(true, value));
-        } else {
-            return(this.returnCorrectTags(false, value));
-        }
-    }
+  return (
+    <div className={name}>
+      <img src={process.env.PUBLIC_URL + "/assets/Knob.png"} alt="Knob" />
+      <KnobController
+        className="knob-controller"
+        modifyPreset={handlePresetModification}
+        numTicks={25}
+        degrees={270}
+        min={1}
+        max={100}
+        value={30}
+        onChange={handleChange}
+      />
+      <label className={contentClass}>{value}</label>
+    </div>
+  );
 }
+
+Knob.propTypes = {
+  setting: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string,
+  modifyPreset: PropTypes.func.isRequired,
+};
